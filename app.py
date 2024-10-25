@@ -86,6 +86,8 @@ def create_app(db_url=None):
             jsonify({"description": "Token is not fresh","error":"Token is not fresh"}),
         )
 
+
+
     # with app.app_context():
     #     db.create_all()  # Создание таблиц в контексте приложения
     api.register_blueprint(ItemBlueprint)
