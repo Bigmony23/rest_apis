@@ -1,0 +1,8 @@
+Flask~=3.0.3
+SQLAlchemy~=2.0.32
+passlib~=1.7.4
+marshmallow~=3.22.0
+flask-smorest
+flask-sqlalchemy
+flask-jwt-extended
+flask-migrate
