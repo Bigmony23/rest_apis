@@ -73,6 +73,7 @@ def create_app(db_url=None):
         return (
             jsonify({"message": "Token invalid","error":"Token is invalid"}),
             401
+
         )
     @jwt.unauthorized_loader
     def missing_token_callback(error):

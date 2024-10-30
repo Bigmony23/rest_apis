@@ -21,8 +21,6 @@ from sqlalchemy.exc import SQLAlchemyError
 from flask_jwt_extended import create_access_token,create_refresh_token,get_jwt_identity
 
 blp=Blueprint('users',__name__)
-
-
 @blp.route("/register")
 class UserRegister(MethodView):
     @blp.arguments(UserSchema)
@@ -38,7 +36,24 @@ class UserRegister(MethodView):
         db.session.add(user)
         db.session.commit()
 
-        return {"message": "User registered", "user": UserSchema().dump(user)}, 201
+        return user  # Return the user object directly
+
+# @blp.route("/register")
+# class UserRegister(MethodView):
+#     @blp.arguments(UserSchema)
+#     @blp.response(201, UserSchema)
+#     def post(self, user_data):
+#         if User.query.filter(User.username == user_data["username"]).first():
+#             abort(409, message="Username already exists")
+#
+#         user = User(
+#             username=user_data["username"],
+#             password=pbkdf2_sha256.hash(user_data["password"])
+#         )
+#         db.session.add(user)
+#         db.session.commit()
+#
+#         return {"message": "User registered", "user": UserSchema().dump(user)}, 201
 
 @blp.route("/login")
 class UserLogin(MethodView):
